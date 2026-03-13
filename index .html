@@ -1,0 +1,1353 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SPA Fitness | Train. Transform. Thrive.</title>
+  <meta name="description" content="SPA Fitness is a premium fitness gym in Pune. Train. Transform. Thrive." />
+  <style>
+    :root {
+      --bg: #050505;
+      --bg-soft: #0c0c0c;
+      --surface: rgba(255,255,255,0.045);
+      --surface-2: rgba(255,255,255,0.065);
+      --line: rgba(255,255,255,0.09);
+      --text: #f5f5f7;
+      --muted: #a1a1a6;
+      --red: #ff2d2d;
+      --red-dark: #d61010;
+      --white: #ffffff;
+      --shadow: 0 24px 80px rgba(0,0,0,0.38);
+      --radius-xl: 32px;
+      --radius-lg: 24px;
+      --radius-md: 18px;
+      --radius-sm: 14px;
+      --container: 1200px;
+      --container-narrow: 980px;
+      --ease: cubic-bezier(.22,1,.36,1);
+    }* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background:
+    radial-gradient(circle at 20% 0%, rgba(255,45,45,.12), transparent 18%),
+    radial-gradient(circle at 100% 20%, rgba(255,45,45,.08), transparent 16%),
+    linear-gradient(180deg, #000 0%, #060606 40%, #040404 100%);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4 {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  letter-spacing: -.04em;
+  line-height: 1.03;
+}
+
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+ul { list-style: none; }
+
+.container {
+  width: min(100% - 2rem, var(--container));
+  margin-inline: auto;
+}
+
+.container-narrow {
+  width: min(100% - 2rem, var(--container-narrow));
+  margin-inline: auto;
+}
+
+.section {
+  padding: 110px 0;
+  position: relative;
+}
+
+.section.large-space {
+  padding: 140px 0;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--red);
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+
+.eyebrow::before {
+  content: "";
+  width: 32px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--red), rgba(255,45,45,.2));
+}
+
+h1, h2, h3, h4 {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+  letter-spacing: -.04em;
+  line-height: 1.03;
+}
+
+h1 {
+  font-size: clamp(3.4rem, 10vw, 8.2rem);
+  font-weight: 800;
+}
+
+h2 {
+  font-size: clamp(2.2rem, 5vw, 4.4rem);
+  font-weight: 800;
+  margin-bottom: 16px;
+}
+
+h3 {
+  font-size: clamp(1.18rem, 2vw, 1.55rem);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+p {
+  color: var(--muted);
+  font-size: clamp(.98rem, 1.25vw, 1.08rem);
+}
+
+.lead {
+  font-size: clamp(1.08rem, 1.55vw, 1.3rem);
+  color: #d5d5d7;
+}
+
+.section-header {
+  max-width: 760px;
+  margin-bottom: 54px;
+}
+
+.centered {
+  text-align: center;
+  margin-inline: auto;
+}
+
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: center;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 54px;
+  padding: 0 22px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: .96rem;
+  border: 1px solid transparent;
+  transition: transform .45s var(--ease), box-shadow .45s var(--ease), background .45s var(--ease), border-color .45s var(--ease), color .45s var(--ease);
+  cursor: pointer;
+}
+
+.btn:hover { transform: translateY(-2px) scale(1.01); }
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--red), #ff4747);
+  color: var(--white);
+  box-shadow: 0 16px 36px rgba(255,45,45,.28);
+}
+
+.btn-primary:hover {
+  box-shadow: 0 20px 40px rgba(255,45,45,.36);
+}
+
+.btn-secondary {
+  color: var(--white);
+  background: rgba(255,255,255,.04);
+  border-color: rgba(255,255,255,.12);
+  backdrop-filter: blur(12px);
+}
+
+.btn-secondary:hover {
+  background: rgba(255,255,255,.08);
+  border-color: rgba(255,255,255,.22);
+}
+
+.glass,
+.card {
+  background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(18px);
+}
+
+.card {
+  border-radius: var(--radius-lg);
+  transition: transform .5s var(--ease), border-color .5s var(--ease), background .5s var(--ease), box-shadow .5s var(--ease);
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(255,45,45,.28);
+  box-shadow: 0 28px 90px rgba(0,0,0,.46);
+}
+
+.nav-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(5,5,5,.72);
+  border-bottom: 1px solid rgba(255,255,255,.06);
+  backdrop-filter: blur(20px);
+}
+
+.navbar {
+  min-height: 74px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  position: relative;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 800;
+  letter-spacing: -.03em;
+}
+
+.brand-mark {
+  width: 42px;
+  height: 42px;
+  border-radius: 13px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, var(--red), #ff4d4d);
+  color: #fff;
+  box-shadow: 0 12px 28px rgba(255,45,45,.28);
+  font-size: .98rem;
+}
+
+.brand small {
+  display: block;
+  color: var(--muted);
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+nav ul {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+nav a {
+  color: #ededf0;
+  font-size: .95rem;
+  font-weight: 600;
+  position: relative;
+  transition: color .35s var(--ease);
+}
+
+nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -8px;
+  width: 0;
+  height: 2px;
+  background: var(--red);
+  transition: width .35s var(--ease);
+}
+
+nav a:hover { color: #fff; }
+nav a:hover::after { width: 100%; }
+
+#menu-toggle { display: none; }
+.menu-btn {
+  display: none;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.04);
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.menu-btn span,
+.menu-btn span::before,
+.menu-btn span::after {
+  content: "";
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: #fff;
+  position: relative;
+  transition: .35s var(--ease);
+}
+.menu-btn span::before { position: absolute; top: -6px; }
+.menu-btn span::after { position: absolute; top: 6px; }
+
+.hero {
+  min-height: calc(100vh - 74px);
+  display: grid;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(0,0,0,.28) 0%, rgba(0,0,0,.58) 55%, rgba(0,0,0,.78) 100%),
+    radial-gradient(circle at 50% 30%, rgba(255,45,45,.16), transparent 22%),
+    url('https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1800&q=80') center/cover no-repeat;
+  transform: scale(1.05);
+  z-index: -2;
+  animation: heroZoom 15s linear infinite alternate;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,.05), rgba(0,0,0,.28));
+  z-index: -1;
+}
+
+.hero-inner {
+  width: min(100% - 2rem, 1100px);
+  margin-inline: auto;
+  text-align: center;
+  padding: 86px 0 70px;
+}
+
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.05);
+  color: #fff;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  font-size: .77rem;
+  font-weight: 700;
+  backdrop-filter: blur(14px);
+  margin-bottom: 22px;
+  animation: fadeUp .9s .15s both;
+}
+
+.hero-tag::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--red);
+  box-shadow: 0 0 18px rgba(255,45,45,.8);
+  animation: pulse 2s infinite;
+}
+
+.hero h1 {
+  max-width: 980px;
+  margin-inline: auto;
+  animation: fadeUp .95s .28s both;
+}
+
+.hero .accent {
+  display: block;
+  color: transparent;
+  background: linear-gradient(180deg, #fff 0%, #ffdfdf 35%, #ff6363 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  text-shadow: 0 10px 50px rgba(255,45,45,.18);
+}
+
+.hero .lead {
+  max-width: 700px;
+  margin: 22px auto 32px;
+  animation: fadeUp .95s .42s both;
+}
+
+.hero .btn-row {
+  justify-content: center;
+  animation: fadeUp .95s .58s both;
+}
+
+.brand-ribbon {
+  margin-top: 44px;
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  animation: fadeUp .95s .72s both;
+}
+
+.pill {
+  padding: 11px 15px;
+  border-radius: 999px;
+  color: #f0f0f2;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.1);
+  font-size: .88rem;
+  font-weight: 600;
+  backdrop-filter: blur(14px);
+}
+
+.hero-wordmark {
+  position: absolute;
+  left: 50%;
+  bottom: 22px;
+  transform: translateX(-50%);
+  width: min(100% - 2rem, 1000px);
+  text-align: center;
+  font-size: clamp(2.8rem, 10vw, 7rem);
+  font-weight: 800;
+  letter-spacing: -.08em;
+  color: rgba(255,255,255,.05);
+  user-select: none;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.split-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  align-items: center;
+}
+
+.copy-block { max-width: 640px; }
+
+.showcase {
+  min-height: 580px;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  position: relative;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  background:
+    linear-gradient(180deg, rgba(0,0,0,.1), rgba(0,0,0,.54)),
+    url('https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
+}
+
+.showcase-badge {
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  bottom: 24px;
+  padding: 22px;
+  border-radius: 22px;
+  background: rgba(10,10,10,.62);
+  border: 1px solid rgba(255,255,255,.1);
+  backdrop-filter: blur(18px);
+}
+
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 30px;
+}
+
+.metric {
+  padding: 22px;
+  border-radius: 22px;
+  background: linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.03));
+  border: 1px solid rgba(255,255,255,.08);
+}
+
+.metric strong {
+  display: block;
+  font-size: clamp(1.7rem, 3vw, 2.35rem);
+  color: #fff;
+  line-height: 1;
+  margin-bottom: 10px;
+  letter-spacing: -.04em;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+}
+
+.panel-card,
+.program-card,
+.facility-card,
+.plan-card,
+.review-card,
+.contact-card,
+.map-shell {
+  padding: 28px;
+  height: 100%;
+}
+
+.icon {
+  width: 54px;
+  height: 54px;
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(255,45,45,.22), rgba(255,45,45,.08));
+  border: 1px solid rgba(255,45,45,.26);
+  margin-bottom: 18px;
+  font-size: 1.28rem;
+}
+
+.soft-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.soft-list li {
+  display: flex;
+  gap: 10px;
+  color: #ececef;
+}
+
+.soft-list li::before {
+  content: "•";
+  color: var(--red);
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.plan-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.plan-card.featured {
+  background: linear-gradient(180deg, rgba(255,45,45,.12), rgba(255,255,255,.04));
+  border-color: rgba(255,45,45,.34);
+  transform: translateY(-4px);
+}
+
+.plan-badge {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--red), #ff5a5a);
+  color: #fff;
+  font-size: .72rem;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  box-shadow: 0 12px 28px rgba(255,45,45,.28);
+}
+
+.plan-kicker {
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .16em;
+  font-size: .78rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.price {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.price strong {
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  color: #fff;
+  line-height: 1;
+}
+
+.price span { color: var(--muted); margin-bottom: 7px; }
+
+.review-card {
+  position: relative;
+}
+
+.review-card::before {
+  content: "“";
+  position: absolute;
+  right: 22px;
+  top: 6px;
+  font-size: 4.3rem;
+  color: rgba(255,45,45,.14);
+  font-family: Georgia, serif;
+}
+
+.stars {
+  color: #ffd25f;
+  letter-spacing: .12em;
+  margin-bottom: 12px;
+}
+
+.member {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255,255,255,.08);
+}
+
+.member strong {
+  display: block;
+  color: #fff;
+  margin-bottom: 3px;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap: 18px;
+}
+
+.gallery-stack {
+  display: grid;
+  gap: 18px;
+}
+
+.gallery-item {
+  position: relative;
+  min-height: 290px;
+  overflow: hidden;
+  border-radius: 26px;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+
+.gallery-item.tall { min-height: 598px; }
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .8s var(--ease), filter .6s var(--ease);
+  filter: saturate(.95) contrast(1.02);
+}
+
+.gallery-item::after {
+  content: attr(data-label);
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  bottom: 18px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: linear-gradient(180deg, rgba(10,10,10,.15), rgba(10,10,10,.82));
+  color: #fff;
+  font-weight: 700;
+  transform: translateY(10px);
+  opacity: 0;
+  transition: .45s var(--ease);
+}
+
+.gallery-item:hover img { transform: scale(1.06); filter: saturate(1) contrast(1.05); }
+.gallery-item:hover::after { opacity: 1; transform: translateY(0); }
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: .9fr 1.1fr;
+  gap: 24px;
+  align-items: stretch;
+}
+
+form {
+  display: grid;
+  gap: 14px;
+  margin-top: 22px;
+}
+
+.field {
+  display: grid;
+  gap: 8px;
+}
+
+label {
+  font-size: .9rem;
+  font-weight: 600;
+  color: #f0f0f2;
+}
+
+input, textarea {
+  width: 100%;
+  border: 1px solid rgba(255,255,255,.1);
+  background: rgba(255,255,255,.035);
+  color: #fff;
+  border-radius: 15px;
+  padding: 15px 16px;
+  font: inherit;
+  outline: none;
+  transition: .35s var(--ease);
+}
+
+input:focus, textarea:focus {
+  border-color: rgba(255,45,45,.45);
+  background: rgba(255,255,255,.06);
+  box-shadow: 0 0 0 4px rgba(255,45,45,.12);
+}
+
+textarea { min-height: 134px; resize: vertical; }
+
+.contact-list {
+  display: grid;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.contact-list li {
+  display: flex;
+  gap: 10px;
+  color: #ececef;
+}
+
+.contact-list li::before {
+  content: "✔";
+  color: var(--red);
+  font-weight: 800;
+}
+
+.map-shell {
+  display: grid;
+  gap: 20px;
+  padding: 18px;
+  border-radius: 30px;
+  background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+
+.map-head {
+  padding: 14px 12px 0;
+}
+
+.map-frame-wrap {
+  border-radius: 24px;
+  overflow: hidden;
+  position: relative;
+  min-height: 470px;
+  border: 1px solid rgba(255,255,255,.08);
+  background: #0a0a0a;
+}
+
+.map-frame-wrap iframe {
+  width: 100%;
+  height: 100%;
+  min-height: 470px;
+  border: 0;
+  filter: grayscale(1) invert(.95) contrast(1.05);
+  opacity: .86;
+}
+
+.map-overlay {
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  bottom: 18px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px;
+  border-radius: 20px;
+  background: rgba(10,10,10,.72);
+  border: 1px solid rgba(255,255,255,.08);
+  backdrop-filter: blur(18px);
+}
+
+.hours {
+  display: grid;
+  gap: 8px;
+  min-width: 220px;
+}
+
+.hours-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  color: #ededf0;
+  font-size: .95rem;
+}
+
+footer {
+  padding: 42px 0 26px;
+  border-top: 1px solid rgba(255,255,255,.07);
+  background: rgba(0,0,0,.24);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.2fr .8fr 1fr .8fr;
+  gap: 24px;
+}
+
+.footer-grid h4 {
+  margin-bottom: 14px;
+  font-size: .98rem;
+}
+
+.footer-grid p,
+.footer-grid li,
+.footer-grid a {
+  color: #cfcfd2;
+  font-size: .95rem;
+}
+
+.footer-links,
+.socials { display: grid; gap: 10px; }
+.footer-links a:hover,
+.socials a:hover { color: #fff; }
+
+.copyright {
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255,255,255,.06);
+  text-align: center;
+  color: #9a9aa0;
+  font-size: .9rem;
+}
+
+.whatsapp-float {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 1100;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, #25D366, #1fbf59);
+  color: #fff;
+  font-size: 1.6rem;
+  box-shadow: 0 18px 36px rgba(37,211,102,.28);
+  transition: transform .35s var(--ease), box-shadow .35s var(--ease);
+}
+
+.whatsapp-float:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 22px 42px rgba(37,211,102,.34);
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  animation: fadeUp .9s var(--ease) forwards;
+  animation-timeline: view();
+  animation-range: entry 12% cover 34%;
+}
+
+.delay-1 { animation-delay: .1s; }
+.delay-2 { animation-delay: .2s; }
+.delay-3 { animation-delay: .3s; }
+
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0%,100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+
+@keyframes heroZoom {
+  from { transform: scale(1.03); }
+  to { transform: scale(1.08); }
+}
+
+@media (max-width: 1080px) {
+  .split-grid,
+  .grid-3,
+  .footer-grid,
+  .contact-grid,
+  .gallery-grid,
+  .grid-2 { grid-template-columns: 1fr 1fr; }
+
+  .gallery-item.tall { min-height: 340px; }
+  .gallery-stack { grid-column: span 2; }
+  .metrics { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 860px) {
+  .menu-btn { display: inline-flex; }
+  .nav-cta-desktop { display: none; }
+
+  nav {
+    position: absolute;
+    top: calc(100% + 12px);
+    left: 0;
+    right: 0;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-8px);
+    transition: .35s var(--ease);
+  }
+
+  nav ul {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+    padding: 20px;
+    border-radius: 22px;
+    background: rgba(10,10,10,.96);
+    border: 1px solid rgba(255,255,255,.08);
+    box-shadow: var(--shadow);
+  }
+
+  #menu-toggle:checked ~ nav {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  #menu-toggle:checked + label span { background: transparent; }
+  #menu-toggle:checked + label span::before { top: 0; transform: rotate(45deg); }
+  #menu-toggle:checked + label span::after { top: 0; transform: rotate(-45deg); }
+}
+
+@media (max-width: 720px) {
+  .section,
+  .section.large-space { padding: 86px 0; }
+
+  .split-grid,
+  .grid-3,
+  .grid-2,
+  .contact-grid,
+  .gallery-grid,
+  .footer-grid,
+  .metrics { grid-template-columns: 1fr; }
+
+  .hero {
+    min-height: calc(100svh - 74px);
+  }
+
+  .hero-inner {
+    padding: 74px 0 56px;
+  }
+
+  .hero-wordmark {
+    font-size: 3rem;
+    bottom: 14px;
+  }
+
+  .btn-row { width: 100%; }
+  .btn { width: 100%; }
+
+  .showcase {
+    min-height: 420px;
+  }
+
+  .gallery-stack { grid-column: auto; }
+
+  .gallery-item,
+  .gallery-item.tall {
+    min-height: 260px;
+  }
+
+  .map-frame-wrap,
+  .map-frame-wrap iframe {
+    min-height: 380px;
+  }
+
+  .map-overlay {
+    position: static;
+    border-radius: 18px;
+    margin: 14px;
+  }
+
+  .panel-card,
+  .program-card,
+  .facility-card,
+  .plan-card,
+  .review-card,
+  .contact-card,
+  .map-shell { padding: 22px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <header class="nav-wrap">
+    <div class="container navbar">
+      <a href="#home" class="brand" aria-label="SPA Fitness home">
+        <span class="brand-mark">SF</span>
+        <span>SPA Fitness<small>Train. Transform. Thrive.</small></span>
+      </a><div style="display:flex; align-items:center; gap:14px;">
+    <input type="checkbox" id="menu-toggle" aria-label="Open menu" />
+    <label for="menu-toggle" class="menu-btn"><span></span></label>
+    <nav>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#why-us">Why Us</a></li>
+        <li><a href="#programs">Programs</a></li>
+        <li><a href="#plans">Plans</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <a href="#contact" class="btn btn-primary nav-cta-desktop">Join Now</a>
+  </div>
+</div>
+
+  </header>  <main>
+    <section class="hero" id="home">
+      <div class="hero-inner">
+        <div class="hero-tag">Premium Gym Branding Experience</div>
+        <h1>
+          SPA Fitness
+          <span class="accent">Train. Transform. Thrive.</span>
+        </h1>
+        <p class="lead">
+          Build strength, improve fitness, and stay consistent in a gym that feels focused, welcoming, and easy to start with.
+        </p>
+        <div class="btn-row">
+          <a href="#plans" class="btn btn-primary">View Membership Plans</a>
+          <a href="#contact" class="btn btn-secondary">Book a Visit</a>
+        </div>
+        <div class="brand-ribbon">
+          <span class="pill">Hardcore Energy</span>
+          <span class="pill">Professional Setup</span>
+          <span class="pill">Inclusive for Everyone</span>
+          <span class="pill">Prime Pune Location</span>
+        </div>
+      </div>
+      <div class="hero-wordmark">SPA FITNESS</div>
+    </section><section class="section large-space" id="about">
+  <div class="container split-grid">
+    <div class="copy-block reveal">
+      <span class="eyebrow">About the Brand</span>
+      <h2>High-performance fitness with space to breathe.</h2>
+      <p class="lead">
+        SPA Fitness blends serious gym culture with premium clarity. 
+      </p>
+      <p style="margin-top:18px;">
+        We built SPA Fitness for everyone. Whether your goal is to lose fat, gain muscle, increase strength, or simply become more disciplined, you train in a professional environment that supports progress without intimidation.
+      </p>
+      <ul class="soft-list">
+        <li>Hardcore motivation with an approachable and inclusive environment</li>
+        <li>Professional training energy centered around consistency and discipline</li>
+        <li>Built for fitness, strength, transformation, and long-term routine</li>
+      </ul>
+    </div>
+    <div class="showcase reveal delay-1">
+      <div class="showcase-badge">
+        <h2>Designed for focus, built for transformation.</h2>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="why-us">
+  <div class="container-narrow">
+    <div class="section-header centered reveal">
+      <span class="eyebrow">Why Choose Us</span>
+      <h2>Everything serious training needs, without visual clutter.</h2>
+      <p>SPA Fitness keeps the experience focused: expert support, modern equipment, clear spaces, and a motivating environment that works across all fitness levels.</p>
+    </div>
+    <div class="metrics reveal delay-1">
+      <div class="metric">
+        <strong>01</strong>
+        <p>Professional trainers who guide technique, progression, and goal-based planning.</p>
+      </div>
+      <div class="metric">
+        <strong>02</strong>
+        <p>Modern machines, free weights, and functional areas for structured workouts.</p>
+      </div>
+      <div class="metric">
+        <strong>03</strong>
+        <p>Prime location on Senapati Bapat Road with a clean, motivating training environment.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section large-space" id="programs">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="eyebrow">Training Programs</span>
+      <h2>Built around real goals and practical results.</h2>
+      <p>Only the programs that matter for performance, body composition, and consistency — no distractions, no unnecessary extras.</p>
+    </div>
+    <div class="grid-3">
+      <article class="card program-card reveal delay-1">
+        <div class="icon">💪</div>
+        <h3>Strength Training</h3>
+        <p>Progressive routines that build power, confidence, and real-world performance.</p>
+      </article>
+      <article class="card program-card reveal delay-2">
+        <div class="icon">🏋️</div>
+        <h3>Weight Training</h3>
+        <p>Structured resistance work for better technique, muscle development, and consistency.</p>
+      </article>
+      <article class="card program-card reveal delay-3">
+        <div class="icon">❤️</div>
+        <h3>Cardio Training</h3>
+        <p>Conditioning sessions that improve stamina, endurance, and calorie burn.</p>
+      </article>
+      <article class="card program-card reveal delay-1">
+        <div class="icon">⚡</div>
+        <h3>Functional Training</h3>
+        <p>Movement-focused training for agility, athleticism, stability, and full-body performance.</p>
+      </article>
+      <article class="card program-card reveal delay-2">
+        <div class="icon">👤</div>
+        <h3>Personal Training</h3>
+        <p>One-on-one guidance for faster progress, accountability, and goal-specific planning.</p>
+      </article>
+      <article class="card program-card reveal delay-3">
+        <div class="icon">🔥</div>
+        <h3>Fat Loss & Muscle Gain</h3>
+        <p>Targeted support for body recomposition, transformation, and visible results.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="plans">
+  <div class="container">
+    <div class="section-header centered reveal">
+      <span class="eyebrow">Membership Plans</span>
+      <h2>Simple pricing. Clear commitment. Serious value.</h2>
+
+    </div>
+    <div class="grid-3">
+      <article class="card plan-card reveal delay-1">
+        <div class="plan-kicker">Starter Plan</div>
+        <h3>1 Month</h3>
+        <div class="price"><strong>₹2,499</strong><span>/ month</span></div>
+        <p>Perfect for trying the gym, starting your routine, or getting back into training.</p>
+        <ul class="soft-list">
+          <li>Full gym floor access</li>
+          <li>Beginner-friendly atmosphere</li>
+          <li>Great for short-term trial</li>
+        </ul>
+        <a href="#contact" class="btn btn-secondary" style="margin-top:24px;">Get Started</a>
+      </article>
+
+      <article class="card plan-card featured reveal delay-2">
+        <div class="plan-badge">Most Popular</div>
+        <div class="plan-kicker">Momentum Plan</div>
+        <h3>3 Months</h3>
+        <div class="price"><strong>₹6,499</strong><span>/ quarter</span></div>
+        <p>Best mix of flexibility and consistency for visible progress and stronger habits.</p>
+        <ul class="soft-list">
+          <li>Better value than monthly</li>
+          <li>Ideal for fat loss and strength</li>
+          <li>Recommended for real results</li>
+        </ul>
+        <a href="#contact" class="btn btn-primary" style="margin-top:24px;">Join Today</a>
+      </article>
+
+      <article class="card plan-card reveal delay-3">
+        <div class="plan-kicker">Elite Plan</div>
+        <h3>12 Months</h3>
+        <div class="price"><strong>₹21,999</strong><span>/ year</span></div>
+        <p>For members committed to long-term transformation, discipline, and year-round progress.</p>
+        <ul class="soft-list">
+          <li>Best annual value</li>
+          <li>Built for routine and consistency</li>
+          <li>Perfect for body transformation</li>
+        </ul>
+        <a href="#contact" class="btn btn-secondary" style="margin-top:24px;">Start Strong</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section large-space" id="facilities">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="eyebrow">Facilities</span>
+      <h2>Professional spaces built for everyday performance.</h2>
+      <p>Every zone is designed to feel open, premium, and useful — making the gym easier to move through on mobile screens and in real life.</p>
+    </div>
+    <div class="grid-2">
+      <article class="card facility-card reveal delay-1">
+        <div class="icon">🏗</div>
+        <h3>Strength & Weight Zones</h3>
+        <p>Dedicated areas for strength machines, free weights, and serious resistance training sessions.</p>
+      </article>
+      <article class="card facility-card reveal delay-2">
+        <div class="icon">🚴</div>
+        <h3>Cardio Setup</h3>
+        <p>Efficient cardio equipment for endurance work, conditioning, and warm-up routines.</p>
+      </article>
+      <article class="card facility-card reveal delay-1">
+        <div class="icon">⚙</div>
+        <h3>Functional Training Zone</h3>
+        <p>Open space for mobility, movement drills, circuits, and performance-focused workouts.</p>
+      </article>
+      <article class="card facility-card reveal delay-2">
+        <div class="icon">🛅</div>
+        <h3>Changing & Locker Support</h3>
+        <p>Clean support spaces that make pre- and post-workout transitions smoother and more convenient.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="testimonials">
+  <div class="container">
+    <div class="section-header centered reveal">
+      <span class="eyebrow">Testimonials</span>
+      <h2>Members feel the difference.</h2>
+      <p>Transformation becomes easier when the atmosphere, structure, and energy all work together.</p>
+    </div>
+    <div class="grid-3">
+      <article class="card review-card reveal delay-1">
+        <p>I started as a beginner and felt comfortable from day one. The gym feels premium, the energy is serious, and the layout is clean and motivating.</p>
+        <div class="member">
+          <strong>Rahul S.</strong>
+          <p>Joined for strength and confidence</p>
+        </div>
+      </article>
+      <article class="card review-card reveal delay-2">
+        <p>SPA Fitness has the perfect mix of hardcore atmosphere and professional polish. It keeps me disciplined without ever feeling chaotic.</p>
+        <div class="member">
+          <strong>Neha P.</strong>
+          <p>Focused on fat loss and routine</p>
+        </div>
+      </article>
+      <article class="card review-card reveal delay-3">
+        <p>The equipment is solid, the environment is clean, and the 3-month plan helped me stay consistent long enough to see real progress.</p>
+        <div class="member">
+          <strong>Amit K.</strong>
+          <p>Muscle gain and performance</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section large-space" id="gallery">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="eyebrow">Gallery</span>
+      <h2>Inside the SPA Fitness environment.</h2>
+    </div>
+    <div class="gallery-grid reveal">
+      <div class="gallery-item tall" data-label="Training floor and premium energy">
+        <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1400&q=80" alt="Gym interior" />
+      </div>
+      <div class="gallery-stack">
+        <div class="gallery-item" data-label="Modern equipment zone">
+          <img src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&w=1200&q=80" alt="Gym equipment" />
+        </div>
+        <div class="gallery-item" data-label="Strength and free weights">
+          <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=1200&q=80" alt="Free weights area" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <div class="container contact-grid">
+    <div class="card contact-card reveal">
+      <span class="eyebrow">Contact</span>
+      <h1>Start your next phase with SPA Fitness.</h1>
+      <p>Ask about memberships, visit timings, or the right plan for your goals.</p>
+      <ul class="contact-list">
+        <li><strong>Phone:</strong>&nbsp;020 2565 7522</li>
+        <li><strong>Address:</strong>&nbsp;4th floor, Vikram Nandadeep Apartments, Senapati Bapat Rd, opposite Patrakar Nagar, Shivaji Co operative Housing Society, Gokhalenagar, Pune, Maharashtra 411016</li>
+        <li><strong>WhatsApp:</strong>&nbsp;+91 8237156367</li>
+      </ul>
+    </div>
+
+    <div class="map-shell reveal delay-1">
+      <div class="map-head">
+        <span class="eyebrow">Find Us</span>
+        <h1>Visit our Pune location.</h1>
+      </div>
+      <div class="map-frame-wrap">
+        <iframe
+          title="SPA Fitness location map"
+          loading="lazy"
+          allowfullscreen
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=4th%20floor%2C%20Vikram%20Nandadeep%20Apartments%2C%20Senapati%20Bapat%20Rd%2C%20opposite%20Patrakar%20Nagar%2C%20Shivaji%20Co%20operative%20Housing%20Society%2C%20Gokhalenagar%2C%20Pune%2C%20Maharashtra%20411016&z=16&output=embed">
+        </iframe>
+        <div class="map-overlay">
+          <div>
+            <h3 style="margin-bottom:6px;">SPA Fitness</h3>
+            <p>Senapati Bapat Rd, Gokhalenagar, Pune</p>
+          </div>
+          <div class="hours">
+            <div class="hours-row"><span>Mon - Sat</span><span>6:00 AM - 10:00 PM</span></div>
+            <div class="hours-row"><span>Sunday</span><span>7:00 AM - 1:00 PM</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  </main>  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="#home" class="brand" style="display:inline-flex; margin-bottom:16px;">
+            <span class="brand-mark">SF</span>
+            <span>SPA Fitness<small>Train. Transform. Thrive.</small></span>
+          </a>
+        </div>
+        <div>
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#programs">Programs</a></li>
+            <li><a href="#plans">Plans</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <ul class="footer-links">
+            <li><a href="tel:02025657522">020 2565 7522</a></li>
+            <li>4th floor, Vikram Nandadeep Apartments, Senapati Bapat Rd, opposite Patrakar Nagar, Shivaji Co operative Housing Society, Gokhalenagar, Pune, Maharashtra 411016</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Socials</h4>
+          <ul class="socials">
+            <li><a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+            <li><a href="https://facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a></li>
+            <li><a href="https://youtube.com" target="_blank" rel="noopener noreferrer">YouTube</a></li>
+            <li><a href="https://wa.me/918237156367" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">© 2026 SPA Fitness. All rights reserved.</div>
+    </div>
+  </footer><a class="whatsapp-float" href="https://wa.me/918237156367?text=Hi%20SPA%20Fitness%2C%20I%20want%20to%20know%20about%20membership%20plans." target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">✆</a>
+
+</body>
+</html>
