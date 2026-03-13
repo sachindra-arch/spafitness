@@ -1,2 +1,2 @@
 ## 🌐 Live Demo
-spafitness.netlify.app
+https://spafitness.netlify.app/
