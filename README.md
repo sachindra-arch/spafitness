@@ -145,7 +145,3 @@ For questions or inquiries:
 - Thanks to all contributors and supporters
 
 ---
-
-**Made with ❤️ by [Your Name/Your Team]**
-
-*Last Updated: 2026*
